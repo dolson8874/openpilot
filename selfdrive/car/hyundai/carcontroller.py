@@ -77,7 +77,7 @@ class CarController:
                                    hud_control.leftLaneVisible, hud_control.rightLaneVisible,
                                    left_lane_warning, right_lane_warning))
 
-    if not self.CP.openpilotLongitudinalControl:
+    if not self.CP.openpilotLongitudinalControl and self.car_fingerprint not in (CAR.MOHAVE_2020):
       if pcm_cancel_cmd:
         can_sends.append(create_clu11(self.packer, self.frame, CS.clu11, Buttons.CANCEL))
       elif CS.out.cruiseState.standstill:
@@ -109,7 +109,7 @@ class CarController:
     if self.frame % 5 == 0 and self.car_fingerprint in (CAR.SONATA, CAR.PALISADE, CAR.IONIQ, CAR.KIA_NIRO_EV, CAR.KIA_NIRO_HEV_2021,
                                                         CAR.IONIQ_EV_2020, CAR.IONIQ_PHEV, CAR.KIA_CEED, CAR.KIA_SELTOS, CAR.KONA_EV,
                                                         CAR.ELANTRA_2021, CAR.ELANTRA_HEV_2021, CAR.SONATA_HYBRID, CAR.KONA_HEV, CAR.SANTA_FE_2022,
-                                                        CAR.KIA_K5_2021, CAR.IONIQ_HEV_2022, CAR.SANTA_FE_HEV_2022, CAR.GENESIS_G70_2020, CAR.SANTA_FE_PHEV_2022):
+                                                        CAR.KIA_K5_2021, CAR.IONIQ_HEV_2022, CAR.SANTA_FE_HEV_2022, CAR.GENESIS_G70_2020, CAR.SANTA_FE_PHEV_2022, CAR.MOHAVE):
       can_sends.append(create_lfahda_mfc(self.packer, CC.enabled))
 
     # 5 Hz ACC options

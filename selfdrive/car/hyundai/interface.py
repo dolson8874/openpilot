@@ -241,6 +241,49 @@ class CarInterface(CarInterfaceBase):
       tire_stiffness_factor = 0.5
       ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
       ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+    elif candidate == CAR.MOHAVE_2020:
+      ret.lateralTuning.pid.kf = 0.00005
+      ret.mass = 2315. + STD_CARGO_KG
+      ret.wheelbase = 2.895
+
+      tire_stiffness_factor = 0.8
+
+      ret.centerToFront = ret.wheelbase * 0.5
+
+      ret.steerRatio = 17.5
+      ret.steerActuatorDelay = 0.0920
+
+      ret.lateralTuning.pid.kf = 0.00005
+      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.075], [0.0025]]
+
+      # INDI
+      """
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGainBP = [0.]
+      ret.lateralTuning.indi.innerLoopGainV = [3.8]
+      ret.lateralTuning.indi.outerLoopGainBP = [0.]
+      ret.lateralTuning.indi.outerLoopGainV = [3.3]
+      ret.lateralTuning.indi.timeConstantBP = [0.]
+      ret.lateralTuning.indi.timeConstantV = [5.0]
+      ret.lateralTuning.indi.actuatorEffectivenessBP = [0.]
+      ret.lateralTuning.indi.actuatorEffectivenessV = [1.95]
+      """
+
+
+      # LQR EQ9000
+      """
+      ret.lateralTuning.init('lqr')
+
+      ret.lateralTuning.lqr.scale = 1680.0
+      ret.lateralTuning.lqr.ki = 0.01
+      ret.lateralTuning.lqr.dcGain = 0.002858
+
+      ret.lateralTuning.lqr.a = [0., 1., -0.22619643, 1.21822268]
+      ret.lateralTuning.lqr.b = [-1.92006585e-04, 3.95603032e-05]
+      ret.lateralTuning.lqr.c = [1., 0.]
+      ret.lateralTuning.lqr.k = [-110.73572306, 451.22718255]
+      ret.lateralTuning.lqr.l = [0.3233671, 0.3185757]
 
     # Genesis
     elif candidate == CAR.GENESIS_G70:
