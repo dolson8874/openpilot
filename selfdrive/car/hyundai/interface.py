@@ -255,7 +255,7 @@ class CarInterface(CarInterfaceBase):
 
       ret.lateralTuning.pid.kf = 0.00005
       ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.075], [0.0025]]
+      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.05], [0.0025]]
 
       # INDI
       """
@@ -270,7 +270,6 @@ class CarInterface(CarInterfaceBase):
       ret.lateralTuning.indi.actuatorEffectivenessV = [1.95]
       """
 
-
       # LQR EQ9000
       """
       ret.lateralTuning.init('lqr')
@@ -284,6 +283,7 @@ class CarInterface(CarInterfaceBase):
       ret.lateralTuning.lqr.c = [1., 0.]
       ret.lateralTuning.lqr.k = [-110.73572306, 451.22718255]
       ret.lateralTuning.lqr.l = [0.3233671, 0.3185757]
+      """
 
     # Genesis
     elif candidate == CAR.GENESIS_G70:

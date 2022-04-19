@@ -24,7 +24,6 @@ const addr_checks landrover_rx_checks = {
 
 
 static const addr_checks* landrover_init(int16_t param) {
-  UNUSED(param);
   landrover_passthrough = GET_FLAG(param, LANDROVER_PARAM_PASSTHROUGH);
   controls_allowed = true;
   relay_malfunction_reset();
@@ -56,9 +55,10 @@ int landrover_rx_hook(CANPacket_t *to_push) {
   return 1;
 }
 
-static int landrover_tx_hook(CANPacket_t *to_send) {
-
+static int landrover_tx_hook(CANPacket_t *to_send, bool longitudinal_allowed) {
   int tx = 1;
+
+  UNUSED(longitudinal_allowed);
 
   // If camera is on bus 1, then nothing can be sent
   if (landrover_camera_detected) {

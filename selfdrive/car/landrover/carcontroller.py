@@ -1,7 +1,7 @@
 from cereal import car
 from common.realtime import DT_CTRL
 from common.numpy_fast import clip, interp
-from selfdrive.config import Conversions as CV
+from common.conversions import Conversions as CV
 from selfdrive.car import apply_std_steer_torque_limits, apply_toyota_steer_torque_limits
 from selfdrive.car.landrover.landrovercan import create_lkas_command, create_lkas_hud
 from selfdrive.car.landrover.values import CarControllerParams, CAR, STATIC_MSGS

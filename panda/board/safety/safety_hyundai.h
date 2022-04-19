@@ -209,6 +209,8 @@ static int hyundai_rx_hook(CANPacket_t *to_push) {
     } else {
     }
 
+    gas_pressed = 0; // dolson Cruise
+
     // sample wheel speed, averaging opposite corners
     if (addr == 902) {
       int hyundai_speed = (GET_BYTES_04(to_push) & 0x3FFFU) + ((GET_BYTES_48(to_push) >> 16) & 0x3FFFU);  // FL + RR
