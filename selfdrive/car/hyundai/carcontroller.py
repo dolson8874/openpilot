@@ -77,7 +77,7 @@ class CarController:
                                    hud_control.leftLaneVisible, hud_control.rightLaneVisible,
                                    left_lane_warning, right_lane_warning))
 
-    if not self.CP.openpilotLongitudinalControl and self.car_fingerprint not in (CAR.MOHAVE_2020):
+    if not self.CP.openpilotLongitudinalControl and self.car_fingerprint not in (CAR.MOHAVE):
       if pcm_cancel_cmd:
         can_sends.append(create_clu11(self.packer, self.frame, CS.clu11, Buttons.CANCEL))
       elif CS.out.cruiseState.standstill:
