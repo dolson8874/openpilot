@@ -477,7 +477,10 @@ void pandad_run(std::vector<Panda *> &pandas) {
 }
 
 void pandad_main_thread(std::vector<std::string> serials) {
-  if (serials.size() == 0) {
+#if !defined(_USE_FLEXRAY_HARNESS_)
+  if (serials.size() == 0) 
+#endif
+  {
     serials = Panda::list();
 
     if (serials.size() == 0) {
