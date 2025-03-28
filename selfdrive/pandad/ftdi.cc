@@ -152,7 +152,7 @@ int PandaFtdiHandle::bulk_read(unsigned char endpoint, unsigned char* data, int 
 std::vector<std::string> PandaFtdiHandle::list() {
   std::vector<std::string> serials;
 
-  int ret, i;
+  int ret;
   struct ftdi_context *ftdi;
   struct ftdi_device_list *devlist, *curdev;
   char sn[128];
@@ -167,8 +167,7 @@ std::vector<std::string> PandaFtdiHandle::list() {
         goto finish;
   }
 
-  i = 0;
-  for (curdev = devlist; curdev != NULL; i++)
+  for (curdev = devlist; curdev != NULL; )
   {
     if ((ret=ftdi_usb_get_strings(ftdi, curdev->dev, NULL, 0, NULL, 0, sn, 128)) < 0)
     {
