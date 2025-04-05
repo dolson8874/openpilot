@@ -122,7 +122,7 @@ public:
 protected:
   // for unit tests
   #if defined(_USE_FLEXRAY_HARNESS_)
-  uint8_t receive_buffer[RECV_SIZE + sizeof(can_header) + (266*5)];
+  uint8_t receive_buffer[RECV_SIZE + sizeof(can_header) + 266];
   uint8_t calculate_flexray_checksum(uint8_t *data, uint16_t len);
   #else
   uint8_t receive_buffer[RECV_SIZE + sizeof(can_header) + 64];
