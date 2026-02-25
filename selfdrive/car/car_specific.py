@@ -86,6 +86,14 @@ class CarSpecificEvents:
         if CC.enabled and CS.vEgo < self.CP.minEnableSpeed:
           events.add(EventName.speedTooLow)
 
+    elif self.CP.brand == 'landrover':
+      if CS.vEgo < (self.CP.minSteerSpeed + 0.5) and self.CP.minSteerSpeed > 10.:
+        self.low_speed_alert = True
+      if CS.vEgo > (self.CP.minSteerSpeed + 1.):
+        self.low_speed_alert = False
+      if self.low_speed_alert:
+        events.add(EventName.belowSteerSpeed)
+
       # TODO: this needs to be implemented generically in carState struct
       # if CC.eps_timer_soft_disable_alert:
       #   events.add(EventName.steerTimeLimit)
